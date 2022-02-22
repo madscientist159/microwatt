@@ -1,0 +1,16 @@
+# This file is Copyright (c) 2022 Raptor Engineering, LLC <support@raptorengineering.com>
+# License: BSD
+
+# PHY ----------------------------------------------------------------------
+phy:        LiteEthECP5PHYRGMII
+vendor:     lattice
+# Core ---------------------------------------------------------------------
+clk_freq:   125e6
+core:       wishbone
+endianness: little
+ntxslots:   2
+nrxslots:   2
+
+soc:
+    mem_map:
+        ethmac: 0x00010000

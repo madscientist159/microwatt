@@ -207,6 +207,21 @@ OPENOCD_JTAG_CONFIG=openocd/ecp5-evn.cfg
 OPENOCD_DEVICE_CONFIG=openocd/LFE5UM5G-85F.cfg
 endif
 
+# Arctic Tern with ECP85
+ifeq ($(FPGA_TARGET), ARCTIC-TERN)
+RESET_LOW=true
+CLK_INPUT=125000000
+CLK_FREQUENCY=48000000
+LPF=constraints/arctic-tern.lpf
+PACKAGE=CABGA381
+NEXTPNR_FLAGS=--um5g-85k --freq 48
+OPENOCD_JTAG_CONFIG=openocd/olimex-arm-usb-tiny-h.cfg
+OPENOCD_DEVICE_CONFIG=openocd/LFE5UM5G-85F.cfg
+toplevel=fpga/top-rcs-arctic-tern-bmc-card.vhdl
+litedram_target=rcs-arctic-tern-bmc-card
+soc_extra_v += liteeth/generated/rcs-arctic-tern-bmc-card/liteeth_core.v
+endif
+
 ifneq ($(litedram_target),)
 soc_extra_synth += litedram/extras/litedram-wrapper-l2.vhdl \
 	litedram/generated/$(litedram_target)/litedram-initmem.vhdl
